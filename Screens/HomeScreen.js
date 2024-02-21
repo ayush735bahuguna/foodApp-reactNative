@@ -10,34 +10,36 @@ const HomeScreen = ({ navigation }) => {
     const [searchQuery, setSearchQuery] = React.useState('');
     return (
         <SafeAreaView >
-            <ScrollView>
-                {/* <View className='p-2 pt-7'>
-                    <Text className='text-5xl font-bold text-slate-700'>Home</Text>
+            <ScrollView className='p-3'>
+                <View className='p-2 pb-5 pt-7'>
+                    <Text className='text-5xl font-bold text-slate-700'>Recipe</Text>
                 </View>
-                <Searchbar className='m-2'
-                    placeholder="Search"
+                <Searchbar className='mb-5'
+                    placeholder="Search recipies..."
                     onChangeText={setSearchQuery}
                     value={searchQuery}
-                /> */}
-                {Categories?.map((e, i) => {
-                    const NumberOfRecipes = getNumberOfRecipes(e.id);
-                    return <TouchableWithoutFeedback
-                        key={i} onPress={() => {
-                            navigation.navigate('DetailPageCategory', { "CategoryId": e.id, "CategoryName": e.name })
-                            Haptics.selectionAsync()
-                        }}
-                    >
-                        <View className='flex p-1 relative'>
-                            <Image
-                                source={{ uri: e.photo_url }}
-                                width={140} height={140}
-                                className='w-full rounded-lg'
-                                blurRadius={1}
-                            />
-                            <Text className='absolute bottom-5 left-5 font-extrabold text-xl  text-gray-100 text-center'>{e.name} ({NumberOfRecipes}) </Text>
-                        </View>
-                    </TouchableWithoutFeedback>
-                })}
+                />
+                <View className='pb-8'>
+                    {Categories?.map((e, i) => {
+                        const NumberOfRecipes = getNumberOfRecipes(e.id);
+                        return <TouchableWithoutFeedback
+                            key={i} onPress={() => {
+                                navigation.navigate('DetailPageCategory', { "CategoryId": e.id, "CategoryName": e.name })
+                                Haptics.selectionAsync()
+                            }}
+                        >
+                            <View className='flex p-1 relative'>
+                                <Image
+                                    source={{ uri: e.photo_url }}
+                                    width={140} height={140}
+                                    className='w-full rounded-lg'
+                                    blurRadius={1}
+                                />
+                                <Text className='absolute bottom-5 left-5 font-extrabold text-xl  text-gray-100 text-center'>{e.name} ({NumberOfRecipes}) </Text>
+                            </View>
+                        </TouchableWithoutFeedback>
+                    })}
+                </View>
             </ScrollView>
         </SafeAreaView>
     )

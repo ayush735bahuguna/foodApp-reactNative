@@ -2,7 +2,6 @@ import React from 'react'
 import { getIngredientName, getRecipes } from '../Data/MockDataApi';
 import { Appbar, Chip, Divider } from 'react-native-paper';
 import { ScrollView, View, Text, Image, TouchableOpacity, TouchableWithoutFeedback } from 'react-native';
-import { List } from 'react-native-paper';
 import { Modal, Portal, Button, PaperProvider } from 'react-native-paper';
 import { AntDesign } from '@expo/vector-icons';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
@@ -15,6 +14,7 @@ const DetailPageCategory = ({ route, navigation }) => {
 
     const [visible, setVisible] = React.useState(false);
     const [PhotoArray, setPhotoArray] = React.useState([]);
+    const [recipeName, setrecipeName] = React.useState('');
     const showModal = (e) => {
         setPhotoArray(e.photosArray)
         setVisible(true);
@@ -32,8 +32,8 @@ const DetailPageCategory = ({ route, navigation }) => {
             <Portal>
                 <Modal visible={visible} onDismiss={hideModal} contentContainerStyle={containerStyle} >
                     <ScrollView showsVerticalScrollIndicator={false} showsHorizontalScrollIndicator={false} >
-                        <View className='flex flex-row items-center justify-between p-2'>
-                            <Text className='text-2xl py-3 p1-2 text-slate-500'>Related images</Text>
+                        <View className='flex flex-row items-center justify-around p-2'>
+                            <Text className='text-2xl py-3 p1-2 text-slate-500'>{recipeName}</Text>
                             <TouchableOpacity onPress={hideModal} className='bg-slate-200 p-2 rounded-full'>
                                 <AntDesign name="close" size={24} color="black" />
                             </TouchableOpacity>
@@ -68,7 +68,10 @@ const DetailPageCategory = ({ route, navigation }) => {
                                 <MaterialCommunityIcons name="timer-outline" size={24} color="black" />
                                 <Text>{e.time} min</Text>
                             </View>
-                            <Button onPress={() => { showModal(e) }}>Show more Images</Button>
+                            <Button onPress={() => {
+                                showModal(e)
+                                setrecipeName(e.title);
+                            }}>Show more Images</Button>
                         </View>
 
 

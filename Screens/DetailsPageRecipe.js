@@ -29,8 +29,8 @@ const DetailsPageRecipe = ({ route, navigation }) => {
                 <Portal>
                     <Modal visible={visible} onDismiss={hideModal} contentContainerStyle={containerStyle} >
                         <ScrollView showsVerticalScrollIndicator={false} showsHorizontalScrollIndicator={false} >
-                            <View className='flex flex-row items-center justify-between p-2'>
-                                <Text className='text-2xl py-3 p1-2 text-slate-500'>Related images</Text>
+                            <View className='flex flex-row items-center justify-around p-2'>
+                                <Text className='text-2xl py-3 p1-2 text-slate-500'>{recipeName} </Text>
                                 <TouchableOpacity onPress={hideModal} className='bg-slate-200 p-2 rounded-full'>
                                     <AntDesign name="close" size={24} color="black" />
                                 </TouchableOpacity>
